@@ -35,4 +35,6 @@ class Sucursale extends Authenticatable
     public function empresa(){
         return $this->belongsTo(empresa::class);
     }
+    
+    
 }

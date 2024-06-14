@@ -30,6 +30,7 @@ class SolicitudeController extends Controller
     
     $solicitude = new Solicitude();
          $solicitude->sucursale_id = $request->sucursale_id;
+        //  $solicitude->cartero_id = $request->cartero_id;
          $solicitude->guia = $request->guia;
          $solicitude->peso_o = $request->peso_o;
          $solicitude->peso_v = $request->peso_v;

@@ -29,10 +29,14 @@ Route::group(['prefix'=>'api'],function(){
     Route::apiResource('/sucursales','SucursaleController');  //editar agragar eliminar listar apiresource
     Route::apiResource('/tarifas','TarifaController');  //editar agragar eliminar listar apiresource
     Route::apiResource('/solicitudes','SolicitudeController');  //editar agragar eliminar listar apiresource
+    Route::apiResource('/encargados','EncargadoController');  //editar agragar eliminar listar apiresource
+    Route::apiResource('/carteros','CarteroController');  //editar agragar eliminar listar apiresource
+    Route::apiResource('/asignar','DetallecarteroController');  //editar agragar eliminar listar apiresource
 
 
 
   
+
 
 
 
