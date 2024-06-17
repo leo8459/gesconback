@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sucursale_id')->constrained('sucursales')->onDelete('cascade');
-            // $table->foreignId('cartero_id')->constrained('carteros')->onDelete('cascade');
+            $table->foreignId('cartero_id')->constrained('carteros')->onDelete('cascade');
             $table->string('guia')->nullable();
             $table->string('peso_o')->nullable();
             $table->string('peso_v')->nullable();

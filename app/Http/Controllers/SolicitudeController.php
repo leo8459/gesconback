@@ -15,7 +15,7 @@ class SolicitudeController extends Controller
      */
     public function index()
     {
-        return Solicitude::with(['Sucursale'])->get();
+        return Solicitude::with(['Sucursale', 'cartero'])->get();
 
     }
 
@@ -27,35 +27,33 @@ class SolicitudeController extends Controller
      */
     public function store(Request $request)
 {
-    
     $solicitude = new Solicitude();
-         $solicitude->sucursale_id = $request->sucursale_id;
-        //  $solicitude->cartero_id = $request->cartero_id;
-         $solicitude->guia = $request->guia;
-         $solicitude->peso_o = $request->peso_o;
-         $solicitude->peso_v = $request->peso_v;
-         $solicitude->remitente = $request->remitente;
-         $solicitude->direccion = $request->direccion;
-         $solicitude->telefono = $request->telefono;
-         $solicitude->contenido = $request->contenido;
-         $solicitude->fecha = $request->fecha;
-         $solicitude->firma_o = $request->firma_o;
-         $solicitude->destinatario = $request->destinatario;
-         $solicitude->telefono_d = $request->telefono_d;
-         $solicitude->direccion_d = $request->direccion_d;
-         $solicitude->ciudad = $request->ciudad;
-         $solicitude->firma_d = $request->firma_d;
-         $solicitude->nombre_d = $request->nombre_d;
-         $solicitude->ci_d = $request->ci_d;
-         $solicitude->fecha_d = $request->fecha_d;
-         $solicitude->estado = $request->estado ?? 1;
+    $solicitude->sucursale_id = $request->sucursale_id;
+    $solicitude->cartero_id = $request->cartero_id ?? null;
+    $solicitude->guia = $request->guia;
+    $solicitude->peso_o = $request->peso_o;
+    $solicitude->peso_v = $request->peso_v;
+    $solicitude->remitente = $request->remitente;
+    $solicitude->direccion = $request->direccion;
+    $solicitude->telefono = $request->telefono;
+    $solicitude->contenido = $request->contenido;
+    $solicitude->fecha = $request->fecha;
+    $solicitude->firma_o = $request->firma_o;
+    $solicitude->destinatario = $request->destinatario;
+    $solicitude->telefono_d = $request->telefono_d;
+    $solicitude->direccion_d = $request->direccion_d;
+    $solicitude->ciudad = $request->ciudad;
+    $solicitude->firma_d = $request->firma_d;
+    $solicitude->nombre_d = $request->nombre_d;
+    $solicitude->ci_d = $request->ci_d;
+    $solicitude->fecha_d = $request->fecha_d;
+    $solicitude->estado = $request->estado ?? 1;
 
+    $solicitude->save();
 
-
-         $solicitude->save();
-     
-         return $solicitude;
+    return $solicitude;
 }
+
 
 
     /**
@@ -81,6 +79,7 @@ class SolicitudeController extends Controller
     public function update(Request $request, Solicitude $solicitude)
     {
         $solicitude->sucursale_id = $request->sucursale_id;
+        $solicitude->cartero_id = $request->cartero_id;
         $solicitude->guia = $request->guia;
         $solicitude->peso_o = $request->peso_o;
         $solicitude->peso_v = $request->peso_v;
