@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarteroController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SucursaleController;
@@ -11,15 +12,11 @@ use App\Http\Controllers\UserController;
 Route::group(['prefix'=>'api'],function(){
     Route::post('/login', [UserController::class, 'login']); // Login de Usuario
     Route::post('/login2', [SucursaleController::class, 'login']); // Login de Sucursal
+    Route::post('/login3', [CarteroController::class, 'login3']); // Login de Sucursal
     // Route::post('/login2','ClienteController@login2');//solo para logear
-    Route::get('/ver1/{seccionId}','CasillaController@obtenercasillas');//solo para logear
-    Route::get('/ver2/{seccionId}', 'CasillaController@obtenerInformacionAlquileres');
-    Route::get('/fecha/{alquilerId}', 'AlquilereController@verificarFechaPorVencer');
-    Route::get('/ver3/{busquedaid}','CasillaController@busquedas');//solo para logear
 
 
     Route::get('/dashboard','DashboardController@patito');//solo para logear
-    Route::get('/reportes/alquileres/{alquilere}', 'AlquilereController@pdf');
 
 
     // Route::get('/ver1/{seccionId}', [CasillaController::class, 'obtenercasillas']);
@@ -33,10 +30,12 @@ Route::group(['prefix'=>'api'],function(){
     Route::apiResource('/carteros','CarteroController');  //editar agragar eliminar listar apiresource
     Route::apiResource('/asignar','DetallecarteroController');  //editar agragar eliminar listar apiresource
 
+    Route::put('/solicitudesrecojo/{solicitude}/', 'SolicitudeController@markAsEnCamino');
+    Route::put('/solicitudesentrega/{solicitude}/', 'SolicitudeController@markAsEntregado');
 
 
   
-
+    
 
 
 
@@ -48,16 +47,6 @@ Route::group(['prefix'=>'api'],function(){
 
 
 Route::group(['prefix'=>'cliente'],function(){
-    Route::post('/login2','ClienteController@login2');//solo para logear
-    Route::apiResource('/casillas','CasillaController');  //editar agragar eliminar listar apiresource
-    Route::apiResource('/alquileres','AlquilereController');  //editar agragar eliminar listar apiresource
-    Route::apiResource('/llaves','LlavesController');  //editar agragar eliminar listar apiresource
-    Route::get('/ver1/{seccionId}','CasillaController@obtenercasillas');//solo para logear
-    Route::get('/ver3/{busquedaid}','CasillaController@busquedas');//solo para logear
-    Route::get('/ver2/{seccionId}', 'CasillaController@obtenerInformacionAlquileres');
-    Route::get('/fecha/{alquilerId}', 'AlquilereController@verificarFechaPorVencer');
-    Route::get('/reportes/alquileres/{alquilere}', 'AlquilereController@pdf');
-
 });
 
 

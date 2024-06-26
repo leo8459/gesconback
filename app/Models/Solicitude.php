@@ -13,7 +13,13 @@ class Solicitude extends Model
     {
         return $this->belongsTo(Sucursale::class);
     }
-    public function cartero(){
-        return $this->belongsTo(cartero::class);
+    public function carteroRecogida()
+    {
+        return $this->belongsTo(Cartero::class, 'cartero_recogida_id');
+    }
+
+    public function carteroEntrega()
+    {
+        return $this->belongsTo(Cartero::class, 'cartero_entrega_id');
     }
 }

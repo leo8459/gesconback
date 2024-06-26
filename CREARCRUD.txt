@@ -9,4 +9,4 @@ php artisan make:model prueba -rm --api
 
 
 MIGRAR BASE DE DATOS SOLITA
-php artisan migrate --path=/database/migrations/2024_06_12_090011_create_encargados_table.php
+php artisan migrate --path=/database/migrations/2024_06_07_135921_create_solicitudes_table.php

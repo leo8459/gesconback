@@ -8,11 +8,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-class cartero extends Model
+class cartero extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     
+    public function solicitudesRecogidas()
+    {
+        return $this->hasMany(Solicitude::class, 'cartero_recogida_id');
+    }
 
+    public function solicitudesEntregadas()
+    {
+        return $this->hasMany(Solicitude::class, 'cartero_entrega_id');
+    }
   
     /**
      * The attributes that are mass assignable.

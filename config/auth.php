@@ -45,7 +45,10 @@ return [
             'driver' => 'session',
             'provider' => 'sucursales',
         ],
-     
+     'cartero' => [
+            'driver' => 'session',
+            'provider' => 'carteros',
+        ],
     ],
 
     /*
@@ -76,7 +79,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Sucursale::class,
         ],
-      
+      'carteros' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\cartero::class,
+        ],
     ],
 
     /*

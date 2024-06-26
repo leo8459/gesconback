@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 class CarteroController extends Controller
 {
     /**
@@ -21,7 +22,6 @@ class CarteroController extends Controller
     public function index()
     {
         return Cartero::all();
-
     }
 
     /**
@@ -32,17 +32,17 @@ class CarteroController extends Controller
      */
     public function store(Request $request)
     {
-         // Crea una nueva instancia de usuario
- $cartero = new Cartero();
- $cartero->nombre = $request->nombre;
- $cartero->apellidos = $request->apellidos;
- $cartero->email = $request->email;
+        // Crea una nueva instancia de usuario
+        $cartero = new Cartero();
+        $cartero->nombre = $request->nombre;
+        $cartero->apellidos = $request->apellidos;
+        $cartero->email = $request->email;
 
- $cartero->password = Hash::make($request->input('password'));
+        $cartero->password = Hash::make($request->input('password'));
 
- $cartero->save();
+        $cartero->save();
 
- return $cartero;
+        return $cartero;
     }
 
     /**
@@ -68,11 +68,11 @@ class CarteroController extends Controller
         $cartero->nombre = $request->nombre;
         $cartero->apellidos = $request->apellidos;
         $cartero->email = $request->email;
-       
+
         $cartero->password = Hash::make($request->input('password'));
-       
+
         $cartero->save();
-       
+
         return $cartero;
     }
 
@@ -94,19 +94,19 @@ class CarteroController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         // Intenta autenticar al maestro
         if (Auth::guard('cartero')->attempt(['email' => $request->email, 'password' => $request->password])) {
             // Autenticación exitosa, recupera la información del maestro
             $cartero = Auth::guard('cartero')->user();
-            
+
             // Ahora puedes acceder a la información del maestro, por ejemplo, $maestro->nombre, $maestro->email, etc.
-    
+
             // Devuelve un mensaje de éxito junto con los datos del maestro
             return response()->json(['message' => 'Inicio de sesión correcto', 'cartero' => $cartero]);
         }
-    
+
         // Si la autenticación falla, devuelve un mensaje de error
-        return response()->json(['error' => 'Credenciales incorrectas'],401);
-}
+        return response()->json(['error' => 'Credenciales incorrectas'], 401);
+    }
 }

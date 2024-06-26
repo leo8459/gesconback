@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\DetalleSolicitude;
 use App\Models\Solicitude;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class SolicitudeController extends Controller
 {
@@ -13,11 +15,14 @@ class SolicitudeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+  
+        public function index()
     {
-        return Solicitude::with(['Sucursale', 'cartero'])->get();
-
+        $solicitudes = Solicitude::with(['carteroRecogida', 'carteroEntrega', 'sucursale'])->get();
+        return response()->json($solicitudes);
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -28,8 +33,9 @@ class SolicitudeController extends Controller
     public function store(Request $request)
 {
     $solicitude = new Solicitude();
+    $solicitude->cartero_recogida_id = $request->cartero_recogida_id?? null;
+    $solicitude->cartero_entrega_id = $request->cartero_entrega_id?? null;
     $solicitude->sucursale_id = $request->sucursale_id;
-    $solicitude->cartero_id = $request->cartero_id ?? null;
     $solicitude->guia = $request->guia;
     $solicitude->peso_o = $request->peso_o;
     $solicitude->peso_v = $request->peso_v;
@@ -79,7 +85,8 @@ class SolicitudeController extends Controller
     public function update(Request $request, Solicitude $solicitude)
     {
         $solicitude->sucursale_id = $request->sucursale_id;
-        $solicitude->cartero_id = $request->cartero_id;
+        $solicitude->cartero_recogida_id = $request->cartero_recogida_id?? null;
+        $solicitude->cartero_entrega_id = $request->cartero_entrega_id?? null;
         $solicitude->guia = $request->guia;
         $solicitude->peso_o = $request->peso_o;
         $solicitude->peso_v = $request->peso_v;
@@ -117,4 +124,21 @@ class SolicitudeController extends Controller
         $solicitude->save();
         return $solicitude;
     }
+    public function markAsEnCamino(Request $request, Solicitude $solicitude)
+    {    $solicitude->estado = 2; // Cambiar estado a "En camino"
+        $solicitude->cartero_recogida_id = $request->cartero_recogida_id; // Asignar el cartero logueado
+        $solicitude->save();
+
+
+            return $solicitude;
+    }
+    public function markAsEntregado(Request $request, Solicitude $solicitude)
+{
+    $solicitude->estado = 3; // Cambiar estado a "Entregado"
+    $solicitude->cartero_entrega_id = $request->cartero_entrega_id; // Asignar el cartero de entrega
+    $solicitude->save();
+
+    return response()->json($solicitude);
+}
+
 }
