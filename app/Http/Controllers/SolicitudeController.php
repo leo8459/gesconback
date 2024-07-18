@@ -126,19 +126,21 @@ class SolicitudeController extends Controller
     }
     public function markAsEnCamino(Request $request, Solicitude $solicitude)
     {    $solicitude->estado = 2; // Cambiar estado a "En camino"
-        $solicitude->cartero_recogida_id = $request->cartero_recogida_id; // Asignar el cartero logueado
+        $solicitude->cartero_entrega_id = $request->cartero_entrega_id; // Asignar el cartero logueado
         $solicitude->save();
 
 
             return $solicitude;
     }
     public function markAsEntregado(Request $request, Solicitude $solicitude)
-{
-    $solicitude->estado = 3; // Cambiar estado a "Entregado"
-    $solicitude->cartero_entrega_id = $request->cartero_entrega_id; // Asignar el cartero de entrega
-    $solicitude->save();
-
-    return response()->json($solicitude);
-}
+    {
+        $solicitude->estado = 2; // Cambiar estado a "En camino"
+        $solicitude->cartero_entrega_id = $request->cartero_entrega_id; // Asignar el cartero de entrega
+        $solicitude->peso_v = $request->peso_v; // Actualizar el peso
+        $solicitude->save();
+    
+        return response()->json($solicitude);
+    }
+    
 
 }
