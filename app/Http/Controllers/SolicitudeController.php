@@ -141,6 +141,23 @@ class SolicitudeController extends Controller
     
         return response()->json($solicitude);
     }
-    
+    public function marcarRecogido(Request $request, $id)
+    {
+        try {
+            // Encuentra la solicitud por ID
+            $solicitude = Solicitude::findOrFail($id);
+
+            // Cambia el estado a 5 y guarda el cartero_entrega_id del request
+            $solicitude->estado = 5;
+            $solicitude->cartero_recogida_id = $request->input('cartero_recogida_id');
+
+            // Guarda los cambios
+            $solicitude->save();
+
+            return response()->json(['message' => 'Solicitud marcada como recogida exitosamente.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al marcar la solicitud como recogida.'], 500);
+        }
+    }
 
 }

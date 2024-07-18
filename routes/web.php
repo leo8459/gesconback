@@ -32,6 +32,7 @@ Route::group(['prefix'=>'api'],function(){
 
     Route::put('/solicitudesrecojo/{solicitude}/', 'SolicitudeController@markAsEnCamino');
     Route::put('/solicitudesentrega/{solicitude}/', 'SolicitudeController@markAsEntregado');
+    Route::put('/marcarrecogido/{solicitude}/', 'SolicitudeController@marcarRecogido');
 
 
   
