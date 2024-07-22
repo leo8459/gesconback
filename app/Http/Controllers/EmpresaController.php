@@ -92,14 +92,25 @@ class EmpresaController extends Controller
         $empresa->save();
         return $empresa;
     }
-    public function login(LoginFormRequest $request)
+    public function login4(Request $request)
     {
-        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password],false)){
-            $user = Auth::user();
-            
-        return $user;
-        } else {
-            return response()->json(['errors'=>['login'=>['Los datos no son validos']]]);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Intenta autenticar al maestro
+        if (Auth::guard('empresa')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Autenticación exitosa, recupera la información del maestro
+            $empresa = Auth::guard('empresa')->user();
+
+            // Ahora puedes acceder a la información del maestro, por ejemplo, $maestro->nombre, $maestro->email, etc.
+
+            // Devuelve un mensaje de éxito junto con los datos del maestro
+            return response()->json(['message' => 'Inicio de sesión correcto', 'empresa' => $empresa]);
         }
+
+        // Si la autenticación falla, devuelve un mensaje de error
+        return response()->json(['error' => 'Credenciales incorrectas'], 401);
     }
 }

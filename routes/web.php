@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarteroController;
+use App\Http\Controllers\EmpresaController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SucursaleController;
@@ -13,6 +14,8 @@ Route::group(['prefix'=>'api'],function(){
     Route::post('/login', [UserController::class, 'login']); // Login de Usuario
     Route::post('/login2', [SucursaleController::class, 'login']); // Login de Sucursal
     Route::post('/login3', [CarteroController::class, 'login3']); // Login de Sucursal
+    Route::post('/login4', [EmpresaController::class, 'login4']); // Login de Sucursal
+
     // Route::post('/login2','ClienteController@login2');//solo para logear
 
 
@@ -90,6 +93,6 @@ Route::get('/', function () {
   
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
