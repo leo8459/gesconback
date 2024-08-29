@@ -40,12 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        
+
         'sucursale' => [
             'driver' => 'session',
             'provider' => 'sucursales',
         ],
-     'cartero' => [
+        'cartero' => [
             'driver' => 'session',
             'provider' => 'carteros',
         ],
@@ -73,13 +73,13 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-       
-        
+
+
         'sucursales' => [
             'driver' => 'eloquent',
             'model' => App\Models\Sucursale::class,
         ],
-      'carteros' => [
+        'carteros' => [
             'driver' => 'eloquent',
             'model' => App\Models\cartero::class,
         ],
@@ -119,8 +119,8 @@ return [
     | confirmation screen. By default, the timeout lasts for three hours.
     |
     */
- 
- 
+
+
 
     'password_timeout' => 10800,
 

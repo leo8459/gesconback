@@ -50,36 +50,36 @@ Route::group(['prefix'=>'api'],function(){
 
 
 
-Route::group(['prefix'=>'cliente'],function(){
-});
+// Route::group(['prefix'=>'cliente'],function(){
+// });
 
 
 
 
 
-Route::group(['prefix'=>'cajero'],function(){
-    Route::apiResource('/users','UserController');
-    Route::apiResource('/categorias','CategoriaController');  //editar agragar eliminar listar apiresource
-    Route::apiResource('/secciones','SeccioneController');  //editar agragar eliminar listar apiresource
-    Route::apiResource('/clientes','ClienteController');  //editar agragar eliminar listar apiresource
-    Route::apiResource('/casillas','CasillaController');  //editar agragar eliminar listar apiresource
-    Route::apiResource('/alquileres','AlquilereController');  //editar agragar eliminar listar apiresource
-    Route::apiResource('/precios','PrecioController');  //editar agragar eliminar listar apiresource
-    Route::apiResource('/cajeros','CajeroController');  //editar agragar eliminar listar apiresource
-    Route::apiResource('/llaves','LlavesController');  //editar agragar eliminar listar apiresource
+// Route::group(['prefix'=>'cajero'],function(){
+//     Route::apiResource('/users','UserController');
+//     Route::apiResource('/categorias','CategoriaController');  //editar agragar eliminar listar apiresource
+//     Route::apiResource('/secciones','SeccioneController');  //editar agragar eliminar listar apiresource
+//     Route::apiResource('/clientes','ClienteController');  //editar agragar eliminar listar apiresource
+//     Route::apiResource('/casillas','CasillaController');  //editar agragar eliminar listar apiresource
+//     Route::apiResource('/alquileres','AlquilereController');  //editar agragar eliminar listar apiresource
+//     Route::apiResource('/precios','PrecioController');  //editar agragar eliminar listar apiresource
+//     Route::apiResource('/cajeros','CajeroController');  //editar agragar eliminar listar apiresource
+//     Route::apiResource('/llaves','LlavesController');  //editar agragar eliminar listar apiresource
 
-    Route::post('/login3','CajeroController@login3');//solo para logear
-    Route::get('/ver3/{busquedaid}','CasillaController@busquedas');//solo para logear
+//     Route::post('/login3','CajeroController@login3');//solo para logear
+//     Route::get('/ver3/{busquedaid}','CasillaController@busquedas');//solo para logear
 
-    Route::get('/ver1/{seccionId}','CasillaController@obtenercasillas');//solo para logear
-    Route::get('/ver2/{seccionId}', 'CasillaController@obtenerInformacionAlquileres');
-    Route::get('/fecha/{alquilerId}', 'AlquilereController@verificarFechaPorVencer');
-    Route::get('/reportes/alquileres/{alquilere}', 'AlquilereController@pdf');
+//     Route::get('/ver1/{seccionId}','CasillaController@obtenercasillas');//solo para logear
+//     Route::get('/ver2/{seccionId}', 'CasillaController@obtenerInformacionAlquileres');
+//     Route::get('/fecha/{alquilerId}', 'AlquilereController@verificarFechaPorVencer');
+//     Route::get('/reportes/alquileres/{alquilere}', 'AlquilereController@pdf');
 
 
-    Route::get('/dashboard','DashboardController@patito');//solo para logear
+//     Route::get('/dashboard','DashboardController@patito');//solo para logear
     
-});
+// });
 
 
 
